@@ -1,0 +1,9 @@
+{
+  "namespace" : "com.dassuncao",
+  "type" : "record",
+  "name" : "UserMessage",
+  "fields" : [
+    {"name":"email","type":"string"},
+    {"name":"password","type":"string"}
+  ]
+}

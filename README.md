@@ -1,2 +1,4 @@
-# spring-cloud-stream-function-reactive-kafka-avro-sample
-Example of an reactive application with (Kafka + Avro) using Spring Cloud Stream with functions model.
+# Spring Cloud Stream Reactive Samples
+Examples of implementations using spring-cloud-stream-reactive using the integration of spring-cloud-function with the Kotlin programming language.
+
+## Status: [ Almost Done ]

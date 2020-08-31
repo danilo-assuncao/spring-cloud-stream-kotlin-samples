@@ -1,0 +1,35 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    stream:
+      function:
+        definition: userCreatedConsumer;userCreatedProducer
+        bindings:
+          userCreatedConsumer-in-0: user-consumer
+          userCreatedProducer-out-0: user-producer
+      bindings:
+        user-consumer:
+          group: cloud-stream-kafka-avro
+          contentType: application/*+avro
+          destination: user-topic
+          consumer:
+            concurrency: 1
+            max-attempts: 5
+        user-producer:
+          contentType: application/*+avro
+          destination: user-topic
+      schemaRegistryClient:
+        endpoint: http://localhost:8081
+      kafka:
+        binder:
+          brokers: localhost:9092
+          producer-properties:
+            key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            schema.registry.url: http://localhost:8081
+          consumer-properties:
+            key.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            schema.registry.url: http://localhost:8081
+            specific.avro.reader: true
