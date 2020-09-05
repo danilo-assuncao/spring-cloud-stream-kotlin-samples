@@ -1,5 +1,5 @@
 {
-  "namespace" : "com.dassuncao",
+  "namespace" : "com.dassuncao.sample.stream",
   "type" : "record",
   "name" : "UserMessage",
   "fields" : [

@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono
 
 interface ProduceUserPort {
 
-    fun produces(user: User): Mono<Void>
+    fun produce(user: User): Mono<Void>
 }

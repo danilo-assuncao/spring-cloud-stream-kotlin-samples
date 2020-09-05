@@ -1,6 +1,6 @@
 package com.dassuncao.sample.stream.adapter.input.event.consumer
 
-import com.dassuncao.UserMessage
+import com.dassuncao.sample.stream.UserMessage
 import com.dassuncao.sample.stream.adapter.input.event.consumer.mapper.UserConsumerMapper
 import com.dassuncao.sample.stream.application.port.input.ShowUserUseCase
 import org.springframework.context.annotation.Bean

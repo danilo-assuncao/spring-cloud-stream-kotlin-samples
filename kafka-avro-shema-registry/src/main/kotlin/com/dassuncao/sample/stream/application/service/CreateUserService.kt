@@ -10,6 +10,6 @@ import reactor.core.publisher.Mono
 class CreateUserService(private val produceUserPort: ProduceUserPort) : CreateUserUseCase {
 
     override fun create(user: User): Mono<Void> {
-        return produceUserPort.produces(user)
+        return produceUserPort.produce(user)
     }
 }

@@ -12,7 +12,7 @@ class ShowUserService : ShowUserUseCase {
 
     override fun showUser(user: User): Mono<Void> {
         return Mono.just(user)
-                .log(this.javaClass.name, INFO, ON_NEXT)
+                .log("${this.javaClass.name} - Consumed", INFO, ON_NEXT)
                 .then()
     }
 }

@@ -1,6 +1,6 @@
 package com.dassuncao.sample.stream.configuration
 
-import com.dassuncao.UserMessage
+import com.dassuncao.sample.stream.UserMessage
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import reactor.core.publisher.EmitterProcessor
@@ -9,6 +9,6 @@ import reactor.core.publisher.EmitterProcessor
 class EmitterProcessorConfiguration {
 
     @Bean
-    fun userEmitterProcessor() =
+    fun userWithoutEmitterProcessor() =
             EmitterProcessor.create<UserMessage>()
 }

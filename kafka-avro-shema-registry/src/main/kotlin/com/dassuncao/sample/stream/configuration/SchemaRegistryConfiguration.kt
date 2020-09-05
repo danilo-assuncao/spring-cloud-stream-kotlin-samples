@@ -1,21 +1,27 @@
 package com.dassuncao.sample.stream.configuration
 
-import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.ConstructorBinding
 import org.springframework.cloud.schema.registry.client.ConfluentSchemaRegistryClient
 import org.springframework.cloud.schema.registry.client.EnableSchemaRegistryClient
 import org.springframework.cloud.schema.registry.client.SchemaRegistryClient
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
-
 @Configuration
 @EnableSchemaRegistryClient
-class SchemaRegistryConfiguration {
+class SchemaRegistryConfiguration(private val schemaRegistryProperties: SchemaRegistryConfigurationProperties) {
 
     @Bean
-    fun schemaRegistryClient(@Value("\${spring.cloud.stream.schemaRegistryClient.endpoint}") endpoint: String): SchemaRegistryClient {
+    fun schemaRegistryClient(): SchemaRegistryClient {
         val client = ConfluentSchemaRegistryClient()
-        client.setEndpoint("http://localhost:8081")
+        client.setEndpoint(schemaRegistryProperties.endpoint)
         return client
     }
 }
+
+@ConstructorBinding
+@ConfigurationProperties("spring.cloud.stream.schema-registry-client")
+data class SchemaRegistryConfigurationProperties(
+        val endpoint: String
+)

@@ -1,6 +1,8 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    application
     id("com.commercehub.gradle.plugin.avro") version "0.21.0"
     id("org.springframework.boot") version "2.3.3.RELEASE"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
@@ -9,8 +11,11 @@ plugins {
 }
 
 group = "com.dassuncao.sample.stream"
-version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+application {
+    mainClassName = "com.dassuncao.sample.stream.CloudStreamKafkaAvroApplicationKt"
+}
 
 avro {
     isCreateSetters.set(true)
@@ -31,7 +36,7 @@ repositories {
 
 val avroVersion = "1.10.0"
 val springCloudVersion = "Hoxton.SR8"
-val schemaRegistryClient = "5.3.0"
+val confluentLibsVersion = "5.3.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -45,7 +50,7 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-stream")
     implementation("org.springframework.cloud:spring-cloud-stream-binder-kafka")
     implementation("org.springframework.cloud:spring-cloud-schema-registry-client")
-    implementation("io.confluent:kafka-avro-serializer:$schemaRegistryClient")
+    implementation("io.confluent:kafka-avro-serializer:$confluentLibsVersion")
     implementation("org.apache.avro:avro:$avroVersion")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -63,6 +68,9 @@ dependencyManagement {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    testLogging {
+        events = setOf(PASSED, FAILED, SKIPPED, STANDARD_OUT, STANDARD_ERROR)
+    }
 }
 
 tasks.withType<KotlinCompile> {
