@@ -1,5 +1,5 @@
 # Spring Cloud Stream Reactive Samples
-Here are several examples using the reactive spring-cloud-stream-function.
+Repository that will contain several examples using the spring-cloud-stream with Kotlin and functional and reactive paradigms.
 
 ## Samples
 | Name | Description |
