@@ -35,3 +35,7 @@ spring:
             value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
             schema.registry.url: ${spring.cloud.stream.schema-registry-client.endpoint}
             specific.avro.reader: true
+        bindings:
+          userCreatedConsumer-in-0:
+            consumer:
+              auto-commit-offset: false # true enabled autoCommit
